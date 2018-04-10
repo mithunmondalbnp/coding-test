@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<mongo:mongo-client id="mongoClient" port="27017" host="localhost">
+		<mongo:client-options write-concern="NONE"
+			connections-per-host="10" connect-timeout="30000" max-wait-time="10000" />
+	</mongo:mongo-client> 
+	
+	<!-- Factory bean that creates the Mongo instance -->
+	<mongo:db-factory dbname="monsanto" id="mongodbFactory"
+		mongo-ref="mongoClient" write-concern="NONE" />
+		
+	<!-- MongoTemplate for connecting and quering the documents in the database -->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongodbFactory" />
+	</bean>
+</beans>
