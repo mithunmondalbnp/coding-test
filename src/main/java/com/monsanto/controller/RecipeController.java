@@ -126,7 +126,7 @@ public class RecipeController {
         return recipeForm;
     }
     
-    //------------------- Delete All Users --------------------------------------------------------
+    //------------------- Delete All Recipes --------------------------------------------------------
     @RequestMapping(value = "/recipe", method = RequestMethod.DELETE)
     public @ResponseBody RecipeForm deleteAllRecipes() {
     	RecipeForm recipeForm = new RecipeForm();
